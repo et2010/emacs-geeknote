@@ -112,7 +112,7 @@ TITLE the title of the new note to be created."
 	(note-tags (geeknote--parse-tags title))
 	(note-notebook (geeknote--parse-notebook title)))
   (async-shell-command
-   (format (concat geeknote-command " create --content WRITE --title %s --tags %s"
+   (format (concat geeknote-command " create --content WRITE --title %s --tag %s"
                    (when note-notebook " --notebook %s"))
            (shell-quote-argument note-title)
            (shell-quote-argument (or note-tags ""))
@@ -210,7 +210,7 @@ TAGS the tags to search the notes with."
   (geeknote--find-with-args
    (format 
     (concat geeknote-command
-            " find --tags %s --count 20")
+            " find --tag %s --count 20")
     (shell-quote-argument tags))
    tags))
 
